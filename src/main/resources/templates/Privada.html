@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html data-theme="dracula" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.12.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Privado</title>
+</head>
+<body class="container mx-auto">
+<div  class="grid grid-cols-1 justify-items-center p-6">
+    <h2>Página privada</h2>
+    <h2>Esta es una página privada</h2>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" class="btn btn-active btn-primary">Salir</button>
+    </form>
+</div>
+</body>
+</html>

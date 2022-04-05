@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html data-theme="dracula" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.12.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Find All</title>
+</head>
+<body class="container mx-auto">
+<div class="grid grid-cols-1 justify-items-center p-6">
+    <h2 class="text-4xl font-semibold">All products</h2>
+    <a class="btn btn-active btn-primary m-2" th:href="@{/privada}">Lugar Privado</a>
+    <a class="btn btn-active btn-primary m-2" th:href="@{/users/create}">Create User</a>
+    <a class="btn btn-active btn-primary m-2" th:href="@{/users/find-all}">All Users</a>
+    <a class="btn btn-active btn-primary m-2" th:href="@{/products/create}">Create Product</a>
+    <a class="btn btn-active btn-primary m-2" th:href="@{/products/find-all}">All Products</a>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" class="btn btn-active btn-primary">Salir</button>
+    </form>
+</div>
+</body>
+</html>

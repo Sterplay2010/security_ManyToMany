@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html data-theme="dracula" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.12.0/dist/full.css" rel="stylesheet" type="text/css"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Create User</title>
+</head>
+<body>
+<div th:fragment="modalUpdate(objeto)">
+    <label th:for="${objeto.username}" class="btn modal-button">Editar</label>
+    <!-- Model del create -->
+    <input type="checkbox" th:id="${objeto.username}" class="modal-toggle">
+    <div class="modal">
+        <div class="modal-box">
+            <form method="post" th:action="@{/users/update/{username} (username = ${objeto.username}) }">
+                <div class="grid grid-cols-1">
+                    <h6 class="font-semibold">Rol de usuario</h6>
+                    <select class="select select-bordered w-full max-w-xs" th:field="${rolesDTO.roleList}" multiple="multiple">
+                        <option
+                                th:each="r,i:${Roles}"
+                                th:value="${r.rolName}"
+                                th:text="${r.rolName}"
+                        ></option>
+                    </select>
+                    <div class="modal-action">
+                        <button class="btn btn-active btn-primary" type="submit">Guardar</button>
+                        <label th:for="${objeto.username}" class="btn">Cerrar</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

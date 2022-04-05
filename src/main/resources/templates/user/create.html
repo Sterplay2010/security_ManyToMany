@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html data-theme="dracula" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.12.0/dist/full.css" rel="stylesheet" type="text/css"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Create User</title>
+</head>
+<body class="container mx-auto">
+<div class="grid grid-cols-1 justify-items-center p-6">
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" class="btn btn-active btn-primary mt-4">Salir</button>
+    </form>
+    <!-- Boton del modal -->
+    <label for="my-modal" class="btn modal-button mt-3">Añadir</label>
+</div>
+
+<!-- Model del create -->
+<input type="checkbox" id="my-modal" class="modal-toggle">
+<div class="modal">
+    <div class="modal-box">
+        <form th:object="${User}" method="post" th:action="@{/users/save}">
+            <div class="grid grid-cols-1">
+                <h6 class="font-semibold">Nombre usuario</h6>
+                <input type="text" name="username" class="input input-bordered w-full max-w-xs">
+                <h6 class="font-semibold">Contraseña</h6>
+                <input type="password" name="password" class="input input-bordered w-full max-w-xs">
+                <h6 class="font-semibold">Rol de usuario</h6>
+                <select class="select select-bordered w-full max-w-xs" th:field="${rolesDTO.roleList}" multiple="multiple">
+                    <option
+                            th:each="r,i:${Roles}"
+                            th:value="${r.rolName}"
+                            th:text="${r.rolName}"
+                    ></option>
+                </select>
+                <div class="modal-action">
+                    <button class="btn btn-active btn-primary" type="submit">Guardar</button>
+                    <label for="my-modal" class="btn">Cerrar</label>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="grid grid-cols-1 justify-items-center mt-4">
+    <table class="table w-full">
+        <thead>
+        <tr>
+            <th>UserName</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="u,i:${Usuarios}">
+            <div th:if="${u.enabled}">
+                <td th:text="${u.username}"></td>
+                <td th:text="${u.enabled} ? 'Activo':'Inactivo'"></td>
+                <td>
+                    <div class="btn-group">
+                        <div
+                                th:replace="user/FragmentUpdate::modalUpdate(${u})"
+                        ></div>
+                        <a class="btn btn-active btn-info"
+                           th:href="@{/users/delete/{username} (username=${u.username})}">Eliminar</a>
+                    </div>
+                </td>
+            </div>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

